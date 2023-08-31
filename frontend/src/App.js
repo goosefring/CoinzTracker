@@ -1,15 +1,12 @@
 import './index.css';
+import MainPage from './components/MainPage';
+import Coins from './components/Coins';
 
 function App() {
   return (
     <div className="App">
-      <h1>Coinz Tracker</h1>
-      <p>View all your favourite cryptocurrencies!</p>
-      <br />
-      <div className="search">
-      <label>Search: </label>
-      <input type="text" />
-      </div>
+      <MainPage/>
+      <Coins />
     </div>
   );
 }
