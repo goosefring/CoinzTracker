@@ -1,9 +1,15 @@
-import './App.css';
+import './index.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>hello</h1>
+      <h1>Coinz Tracker</h1>
+      <p>View all your favourite cryptocurrencies!</p>
+      <br />
+      <div className="search">
+      <label>Search: </label>
+      <input type="text" />
+      </div>
     </div>
   );
 }
