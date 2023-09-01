@@ -42,7 +42,9 @@ const MainPage = () => {
                 <label>Search: </label>
                 <input type="text" value={query} onChange={handleQuery} />
                 {searchedCoins.map(coin => {
-                    <p>{coin.name}</p>
+                    return (
+                        <p>{coin.name}</p>
+                    )
                 })}
             </div>
             <Coins />
