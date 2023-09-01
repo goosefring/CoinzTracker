@@ -1,19 +1,28 @@
+import axios from 'axios'
+import { useState } from 'react';
+
 const Coins = () => {
-    return (
-        <div className="coins">
-            <table>
-                <th>Coin</th>
-                <th>Price</th>
-                <th>Market Change %</th>
-            </table>
-            <ol>
-                <li>bingus</li>
-                <li>bingus</li>
-                <li>bingus</li>
-                <li>bingus</li>
-            </ol>
-        </div>
-    );
+
+    let [[coins], setCoins] = useState([]);
+
+    try {
+        const res = axios.get('https://api.coingecko.com/api/v3/search/trending');
+        console.log('coin data: ' + res.data);
+        setCoins = res;
+        console.log('coin array: ' + coins);
+    } catch (err) {
+        console.error('Data Error: ' + err)
+    }
+
+    // return (
+    //     <div className="coins">
+    //         <p>Trending Coins</p>
+    //         {/* <ul>
+    //             {coins.map(coin => {
+    //                 <li>{coin}</li>  
+    //             })}
+    //         </ul> */}
+    //     </div>
+    // )
 }
- 
 export default Coins;
