@@ -5,30 +5,29 @@ import Coins from './Coins';
 
 const MainPage = () => {
 
+    const [searchedCoins, setSearchedCoins] = useState([]);
     const [query, setQuery] = useState('');
 
     const handleQuery = (e) => {
         setQuery(e.target.value);
         //searchCoins(query);
         setTimeout(() => {
-            searchCoins(query);
+            findCoins(query);
         }, 500)
     }
-    const searchCoins = async (query) => {
+    const findCoins = async (query) => {
         try {
             const res = await fetch(`https://api.coingecko.com/api/v3/search?query=${query}`);
             const data = await res.json();
             const coinArray = data.coins.map(coin => {
                 return {
-                    id: coin.item.coin_id,
-                    nameID: coin.item.id,
                     name: coin.item.name,
                     symbol: coin.item.symbol,
                     image: coin.item.large,
-                    price: coin.item.price_btc
                 }
             });
-            console.log(coinArray);
+            setSearchedCoins(coinArray);
+            console.log('searched coins: ' + searchedCoins);
         } catch (err) {
             console.error('Data Error: ' + err)
         }
@@ -42,6 +41,9 @@ const MainPage = () => {
             <div className="search">
                 <label>Search: </label>
                 <input type="text" value={query} onChange={handleQuery} />
+                {searchedCoins.map(coin => {
+                    <p>{coin.name}</p>
+                })}
             </div>
             <Coins />
         </div>
