@@ -11,7 +11,6 @@ function App() {
         <Route path="/" Component={MainPage}>
         </Route>
       </Routes>
-      <Coins />
       </div>
     </Router>
   );
