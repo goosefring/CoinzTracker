@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import '../index.css';
+import { Link } from 'react-router-dom';
 import Coins from './Coins';
 
 const MainPage = () => {
@@ -17,6 +18,12 @@ const MainPage = () => {
     }
     const findCoins = async (query) => {
         try {
+            if (query.length > 2) {
+
+            }
+            else {
+
+            }
             const res = await fetch(`https://api.coingecko.com/api/v3/search?query=${query}`);
             const data = await res.json();
             console.log('data', data);
@@ -45,17 +52,23 @@ const MainPage = () => {
             <div className="search">
                 <label>Search: </label>
                 <input type="text" value={query} onChange={handleQuery} />
-                {query == '' ? (
-                    <br></br>
+                {query === '' ? (
+                    <Coins />
+
                 ) : (
                     searchedCoins.map(coin => {
                         return (
-                            <p>{coin.name}</p>
+                            <Link to={coin.nameID}>
+                                <li key={coin.id}>{coin.name}</li>
+
+                                {/* <li key={coin.id}>{coin.image}</li>
+                                <li key={coin.id}>{coin.symbol}</li>
+                                <li key={coin.id}>{coin.price}</li> */}
+                            </Link>
                         )
                     })
                 )}
             </div>
-            <Coins />
         </div>
     );
 }
