@@ -45,11 +45,15 @@ const MainPage = () => {
             <div className="search">
                 <label>Search: </label>
                 <input type="text" value={query} onChange={handleQuery} />
-                {searchedCoins.map(coin => {
-                    return (
-                        <p>{coin.name}</p>
-                    )
-                })}
+                {query == '' ? (
+                    <br></br>
+                ) : (
+                    searchedCoins.map(coin => {
+                        return (
+                            <p>{coin.name}</p>
+                        )
+                    })
+                )}
             </div>
             <Coins />
         </div>

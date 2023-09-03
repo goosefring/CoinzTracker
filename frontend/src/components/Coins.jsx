@@ -37,14 +37,25 @@ const Coins = () => {
     return (
         <div className="coins">
             <p>Trending Coins</p>
-            <ol>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
                 {coins.map(coin => {
                     return (
-                        <Link to={coin.nameID}>
-                            <li key={coin.id}>{coin.name}</li>
-                        </Link>
+                        <tr>
+                            <Link to={coin.nameID}>
+                                <td key={coin.id}>{coin.image}</td>
+                                <td key={coin.id}>{coin.symbol}</td>
+                                <td key={coin.id}>{coin.name}</td>
+                                <td key={coin.id}>{coin.price}</td>
+                            </Link>
+                        </tr>
                     );
                 })}
+            </table>
+            <ol>
                 {/* {coins.length > 0 ? (
                 coins.map((coin, i) =>
                 <li key={coin[++i].id}>{coin[++i].name}</li>  
