@@ -7,6 +7,7 @@ import Coins from './Coins';
 const MainPage = () => {
 
     const [searchedCoins, setSearchedCoins] = useState([]);
+    const [clickedCoin, setClickedCoin] = useState('');
     const [query, setQuery] = useState('');
 
     const handleQuery = (e) => {
@@ -22,7 +23,7 @@ const MainPage = () => {
 
             }
             else {
-
+                console.log('do nothing');
             }
             const res = await fetch(`https://api.coingecko.com/api/v3/search?query=${query}`);
             const data = await res.json();
@@ -54,7 +55,6 @@ const MainPage = () => {
                 <input type="text" value={query} onChange={handleQuery} />
                 {query === '' ? (
                     <Coins />
-
                 ) : (
                     searchedCoins.map(coin => {
                         return (

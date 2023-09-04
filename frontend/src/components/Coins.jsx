@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CoinsPage from './CoinsPage';
@@ -30,10 +29,6 @@ const Coins = () => {
         fetchCoins();
     }, []);
 
-    // for (let i = 0; i < coins.length; i++) {
-    //     console.log(coins[i].id)
-    // }
-
     return (
         <div className="coins">
             <p>Trending Coins</p>
@@ -45,25 +40,16 @@ const Coins = () => {
                 {coins.map(coin => {
                     return (
                         <tr>
-                            <Link to={coin.nameID}>
-                                <td key={coin.id}>{coin.image}</td>
+                            <Link to={`${coin.nameID}`}>
+                                <td>{coin.name}</td>
+                                {/* <td key={coin.id}>{coin.image}</td>
                                 <td key={coin.id}>{coin.symbol}</td>
-                                <td key={coin.id}>{coin.name}</td>
-                                <td key={coin.id}>{coin.price}</td>
+                                <td key={coin.id}>{coin.price}</td> */}
                             </Link>
                         </tr>
                     );
                 })}
             </table>
-            <ol>
-                {/* {coins.length > 0 ? (
-                coins.map((coin, i) =>
-                <li key={coin[++i].id}>{coin[++i].name}</li>  
-                )
-                ) : (
-                    <li>No coins available</li>
-                )} */}
-            </ol>
         </div>
     )
 }
