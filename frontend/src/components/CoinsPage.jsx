@@ -1,21 +1,29 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect,} from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Chart from './Chart'
 
 const CoinsPage = () => {
 
-    const data = useParams();
-    const coinID = data.id
+    const params = useParams();
+    const coinID = params.id
 
     console.log('coinID: ' + coinID);
 
-    const [coin, setCoin] = useState({});
+    let [coinGraph, setCoinGraph] = useState([]);
 
     useEffect(() => {
         const fetchCoinChart = async () => {
             try {
-                const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinID}/market_chart?vs_currency=usd&days=30`);
+                const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinID}/market_chart?vs_currency=usd&days=1`);
                 const data = await res.json();
                 console.log('coin data', data);
+                coinGraph = data.prices.map(priceData => {
+                    const [date, price] = priceData;
+                    return {
+                        Date: date, Price: price
+                    }
+                });
+                setCoinGraph(coinGraph);
             } catch (err) {
                 console.error('Data Error: ' + err)
             }
@@ -26,7 +34,8 @@ const CoinsPage = () => {
     return (
         <div className="coin-page">
             <h1>Coin Info</h1>
-            <p>{coin.name}</p>
+            <br />
+            <Chart coinGraph={coinGraph} />
         </div>
     );
 }
