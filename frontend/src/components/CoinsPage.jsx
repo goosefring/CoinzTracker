@@ -13,16 +13,22 @@ const CoinsPage = () => {
 
     useEffect(() => {
         const fetchCoinChart = async () => {
+            const altLink = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1';
             try {
-                const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinID}/market_chart?vs_currency=usd&days=1`);
+                const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinID}/ohlc?vs_currency=usd&days=30`);
                 const data = await res.json();
                 console.log('coin data', data);
-                coinGraph = data.prices.map(priceData => {
-                    const [date, price] = priceData;
+                coinGraph = data.map(priceData => {
+                    const [timestamp, open, high, low, close] = priceData;
                     return {
-                        Date: date, Price: price
+                        Date: timestamp,
+                        Open: open,
+                        High: high,
+                        Low: low,
+                        Close: close
                     }
                 });
+                console.log('coin graph', coinGraph);
                 setCoinGraph(coinGraph);
             } catch (err) {
                 console.error('Data Error: ' + err)
