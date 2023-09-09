@@ -1,5 +1,5 @@
-import { React, ReactApexChart } from 'react'
-import { ReactDOM } from 'react';
+import React, {ReactApexChart} from 'react'
+import ReactDOM  from 'react';
 
 const Chart = (coinGraph) => {
 
