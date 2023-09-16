@@ -1,5 +1,6 @@
 import React, {ReactApexChart} from 'react'
 import ReactDOM  from 'react';
+import ApexCharts from 'apexcharts'
 
 const Chart = (coinGraph) => {
 
@@ -48,13 +49,13 @@ const Chart = (coinGraph) => {
         render() {
             return (
                 <div id="chart">
-                    <ReactApexChart options={this.state.options} series={this.state.series} type="candlestick" height={350} />
+                    <ApexChart options={this.state.options} series={this.state.series} type="candlestick" height={350} />
                 </div>
             );
         }
     }
     const domContainer = document.querySelector('#app');
-    ReactDOM.render(React.createElement(ApexChart), domContainer);
+    ReactDOM.render(React.createElement(ApexCharts), domContainer);
 }
 
 export default Chart;
