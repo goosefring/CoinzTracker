@@ -1,52 +1,33 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import ApexCharts from 'apexcharts'
 
-const Chart = (props) => {
+export default function Chart({coinGraph}) {
 
+    console.log('props', coinGraph);
 
-
-console.log('chart props', props.coinGraph);
-
-let data = [];
-
-for (let i = 0; i < props.coinGraph.length; i++) {
-    data = [
-        {
-            Date: props.coinGraph[i].Date,
-            Price: props.coinGraph[i].Price,
-        }
-    ];
-
-}
-
-console.log('data timestamp', data);
-
-return (
-    <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+    return (
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
             width={500}
             height={300}
-            data={data}
+            data={coinGraph}
             margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
             }}
-        >
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="Date" />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line type="monotone" dataKey="Price" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart>
-    </ResponsiveContainer>
-);
+          </LineChart>
+        </ResponsiveContainer>
+      );
 }
-
-export default Chart;
 
 
 
