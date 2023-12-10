@@ -1,123 +1,195 @@
-import React from 'react'
-import ReactDOM from 'react';
+import React from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import ApexCharts from 'apexcharts'
 
-const Chart = (coinGraph) => {
+const Chart = (props) => {
 
-    console.log('chart props', coinGraph);
 
-    let options = {};
 
-    try {
-        for (let i = 0; i < coinGraph.length; i++) {
+console.log('chart props', props.coinGraph);
 
-            options = {
-                chart: {
-                    type: 'candlestick',
-                    height: 350
-                },
-                series: [{
-                    data: [{
-                        x: coinGraph[i].Date,
-                        y: [coinGraph[i].Open, coinGraph[i].High, coinGraph[i].Low, coinGraph[i].Close]
-                    },
-                    ]
-                }],
-                title: {
-                    text: 'CandleStick Chart',
-                    align: 'left'
-                },
-                xaxis: {
-                    type: 'datetime'
-                },
-                yaxis: {
-                    tooltip: {
-                        enabled: true
-                    }
-                },
-                plotOptions: {
-                    candlestick: {
-                        wick: {
-                            useFillColor: true,
-                        }
-                    }
-                }
+let data = [];
 
-            }
+for (let i = 0; i < props.coinGraph.length; i++) {
+    data = [
+        {
+            Date: props.coinGraph[i].Date,
+            Price: props.coinGraph[i].Price,
         }
+    ];
 
-        const chart = new ApexCharts(document.querySelector("#chart"), options);
+}
 
-        //chart.render();
+console.log('data timestamp', data);
 
-    } catch (err) {
-        console.log('chart error', err);
-    }
-
-
-    // class ApexChart extends React.Component {
-
-    //     constructor(coinGraph) {
-    //         super(coinGraph);
-
-    //         for (let i = 0; i < coinGraph.length; i++) {
-
-    //             this.state = {
-
-    //                 series: [{
-    //                     data: [{
-    //                         x: coinGraph[i].Date,
-    //                         y: [coinGraph[i].Open, coinGraph[i].High, coinGraph[i].Low, coinGraph[i].Close]
-    //                     },
-    //                     ]
-    //                 }],
-    //                 plotOptions: {
-    //                     candlestick: {
-    //                         colors: {
-    //                             upward: '#3C90EB',
-    //                             downward: '#DF7D46'
-    //                         }
-    //                     }
-    //                 }
-
-    //                 // options: {
-    //                 //     chart: {
-    //                 //         type: 'candlestick',
-    //                 //         height: 350
-    //                 //     },
-    //                 //     title: {
-    //                 //         text: 'CandleStick Chart',
-    //                 //         align: 'left'
-    //                 //     },
-    //                 //     xaxis: {
-    //                 //         type: 'datetime'
-    //                 //     },
-    //                 //     yaxis: {
-    //                 //         tooltip: {
-    //                 //             enabled: true
-    //                 //         }
-    //                 //     }
-    //                 // },
-    //             };
-    //         }
-
-    //     }
-
-    //     render() {
-    //         return (
-    //             <div id="chart">
-    //                 <ApexChart options={this.state.options} series={this.state.series} type="candlestick" height={350} />
-    //             </div>
-    //         );
-    //     }
-    // }
-    // const domContainer = document.querySelector('#app');
-    // ReactDOM.render(React.createElement(ApexCharts), domContainer);
-        return (
-            <div id="chart">
-                <ApexCharts options={options} series={options.series} type="candlestick" height={350} />
-            </div>
-        )
+return (
+    <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+            }}
+        >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="Date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="Price" stroke="#8884d8" activeDot={{ r: 8 }} />
+        </LineChart>
+    </ResponsiveContainer>
+);
 }
 
 export default Chart;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export default class Example extends PureComponent {
+//   static demoUrl = 'https://codesandbox.io/s/simple-line-chart-kec3v';
+// }
+
+
+// let options = {};
+
+// try {
+//     for (let i = 0; i < coinGraph.length; i++) {
+
+//         options = {
+//             chart: {
+//                 type: 'candlestick',
+//                 height: 350
+//             },
+//             series: [{
+//                 data: [{
+//                     x: coinGraph[i].Date,
+//                     y: [coinGraph[i].Open, coinGraph[i].High, coinGraph[i].Low, coinGraph[i].Close]
+//                 },
+//                 ]
+//             }],
+//             title: {
+//                 text: 'CandleStick Chart',
+//                 align: 'left'
+//             },
+//             xaxis: {
+//                 type: 'datetime'
+//             },
+//             yaxis: {
+//                 tooltip: {
+//                     enabled: true
+//                 }
+//             },
+//             plotOptions: {
+//                 candlestick: {
+//                     wick: {
+//                         useFillColor: true,
+//                     }
+//                 }
+//             }
+
+//         }
+//     }
+
+//     const chart = new ApexCharts(document.querySelector("#chart"), options);
+
+//     //chart.render();
+
+// } catch (err) {
+//     console.log('chart error', err);
+// }
+
+
+// class ApexChart extends React.Component {
+
+//     constructor(coinGraph) {
+//         super(coinGraph);
+
+//         for (let i = 0; i < coinGraph.length; i++) {
+
+//             this.state = {
+
+//                 series: [{
+//                     data: [{
+//                         x: coinGraph[i].Date,
+//                         y: [coinGraph[i].Open, coinGraph[i].High, coinGraph[i].Low, coinGraph[i].Close]
+//                     },
+//                     ]
+//                 }],
+//                 plotOptions: {
+//                     candlestick: {
+//                         colors: {
+//                             upward: '#3C90EB',
+//                             downward: '#DF7D46'
+//                         }
+//                     }
+//                 }
+
+//                 // options: {
+//                 //     chart: {
+//                 //         type: 'candlestick',
+//                 //         height: 350
+//                 //     },
+//                 //     title: {
+//                 //         text: 'CandleStick Chart',
+//                 //         align: 'left'
+//                 //     },
+//                 //     xaxis: {
+//                 //         type: 'datetime'
+//                 //     },
+//                 //     yaxis: {
+//                 //         tooltip: {
+//                 //             enabled: true
+//                 //         }
+//                 //     }
+//                 // },
+//             };
+//         }
+
+//     }
+
+//     render() {
+//         return (
+//             <div id="chart">
+//                 <ApexChart options={this.state.options} series={this.state.series} type="candlestick" height={350} />
+//             </div>
+//         );
+//     }
+// }
+// const domContainer = document.querySelector('#app');
+// ReactDOM.render(React.createElement(ApexCharts), domContainer);
+// return (
+//     <div id="chart">
+//         <ApexCharts options={options} series={options.series} type="candlestick" height={350} />
+//     </div>
+// )
