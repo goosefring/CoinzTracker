@@ -58,7 +58,7 @@ const MainPage = () => {
                 ) : (
                     searchedCoins.map(coin => {
                         return (
-                            <Link to={coin.nameID}>
+                            <Link to={`${coin.nameID}`}>
                                 <li key={coin.id}>{coin.name}</li>
 
                                 {/* <li key={coin.id}>{coin.image}</li>

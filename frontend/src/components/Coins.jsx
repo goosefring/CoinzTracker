@@ -18,7 +18,7 @@ const Coins = () => {
                         name: coin.item.name,
                         symbol: coin.item.symbol,
                         image: coin.item.large,
-                        price: coin.item.price_btc
+                        price: coin.item.price
                     }
                 });
                 setCoins(coinArray);
