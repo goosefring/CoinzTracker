@@ -1,6 +1,5 @@
 import './index.css';
 import MainPage from './components/MainPage';
-import Coins from './components/Coins';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CoinsPage from './components/CoinsPage';
 

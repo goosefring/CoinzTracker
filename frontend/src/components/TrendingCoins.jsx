@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CoinsPage from './CoinsPage';
 
-const Coins = () => {
+const TrendingCoins = () => {
     const [coins, setCoins] = useState([]);
 
     useEffect(() => {
@@ -53,4 +53,4 @@ const Coins = () => {
         </div>
     )
 }
-export default Coins;
+export default TrendingCoins;

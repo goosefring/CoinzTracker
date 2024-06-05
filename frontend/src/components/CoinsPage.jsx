@@ -37,7 +37,7 @@ const CoinsPage = () => {
         <div className="coin-page">
             <h1>Coin Info</h1>
             <br />
-            <Chart coinGraph={coinGraph} />
+            {/* <Chart coinGraph={coinGraph} /> */}
         </div>
     );
 }
